@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Cinzel", serif;
+  --font-arabic: "Cairo", sans-serif;
+  
+  --color-gold-300: #F3E5AB;
+  --color-gold-400: #E6C27A;
+  --color-gold-500: #D4AF37;
+  --color-gold-600: #AA8A12;
+  
+  --color-dark-800: #1C1A17; 
+  --color-dark-900: #0D0B08;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  html[lang="ar"] {
+    --font-sans: "Cairo", sans-serif;
+    --font-serif: "Cairo", sans-serif;
+    font-size: 110%; /* Bump up base text size for Arabic specifically */
+    font-family: var(--font-arabic);
+  }
+  
+  body {
+    @apply bg-zinc-50 text-zinc-900 font-sans transition-colors duration-300;
+  }
+  
+  html.dark body {
+    @apply bg-dark-900 text-zinc-50;
+  }
+  
+  ::selection {
+    @apply bg-gold-500/30 text-gold-500;
+  }
+}
+
+@layer utilities {
+  .text-gold-gradient {
+    background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-500), var(--color-gold-600));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-gold-gradient {
+    background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-500), var(--color-gold-600));
+  }
+  
+  .border-gold-gradient {
+    border-image: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-600)) 1;
+  }
+}
+
+/* 3D Diamond Animation */
+@keyframes spin-slow {
+  from { transform: rotateY(0deg) rotateZ(10deg); }
+  to { transform: rotateY(360deg) rotateZ(10deg); }
+}
+
+.diamond-3d {
+  animation: spin-slow 20s linear infinite;
+  transform-style: preserve-3d;
+}
+
+.marquee-content {
+  display: flex;
+  white-space: nowrap;
+  animation: scroll-left 25s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Scrollbar hiding */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

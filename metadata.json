@@ -1,0 +1,6 @@
+{
+  "name": "Queen Diamanda",
+  "description": "Premium Moroccan Luxury Jewelry Brand",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
