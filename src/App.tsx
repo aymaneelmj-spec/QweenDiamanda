@@ -27,6 +27,15 @@ const AppContent = () => {
       const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scroll = totalScroll / windowHeight;
       setScrollProgress(scroll);
+const handler = (e: KeyboardEvent) => {
+    if (e.ctrlKey && e.shiftKey && e.key === 'F') {
+      window.location.href = '/qd-admin';
+    }
+  };
+  window.addEventListener('keydown', handler);
+  return () => window.removeEventListener('keydown', handler);
+
+
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
