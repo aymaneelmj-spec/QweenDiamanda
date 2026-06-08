@@ -7,9 +7,6 @@ import { DiamondSVG } from './components/DiamondSVG';
 import heroImage from './assets/images/hero_diamond_woman_1780720985552.png';
 import { cn } from './lib/utils';
 
-import { Routes, Route } from 'react-router-dom';
-import AdminDashboard from './AdminDashboard';
-
 const AppContent = () => {
   const { language, setLanguage, theme, toggleTheme } = useAppContext();
   const t = translations[language];
@@ -453,10 +450,7 @@ const AppContent = () => {
 export default function App() {
   return (
     <AppProvider>
-      <Routes>
-        <Route path="/" element={<AppContent />} />
-        <Route path="/qd-admin" element={<AdminDashboard />} />
-      </Routes>
+      <AppContent />
     </AppProvider>
   );
 }
