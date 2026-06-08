@@ -1,20 +1,5 @@
 import { useEffect } from 'react';
 
-export default function AdminDashboard() {
-  useEffect(() => {
-    // Prevents the main app styles from interfering
-    document.body.style.margin = '0';
-  }, []);
-
-  return (
-    <iframe
-      srcDoc={dashboardHTML}
-      style={{ width: '100vw', height: '100vh', border: 'none' }}
-      title="Admin Dashboard"
-    />
-  );
-}
-
 const dashboardHTML = `<!DOCTYPE html>
 <html>
 <head>
@@ -951,7 +936,3 @@ export default function AdminDashboard() {
     />
   );
 }
-
-
-
-
