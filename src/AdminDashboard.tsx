@@ -1,11 +1,28 @@
 import { useEffect } from 'react';
 
+export default function AdminDashboard() {
+  useEffect(() => {
+    // Prevents the main app styles from interfering
+    document.body.style.margin = '0';
+  }, []);
+
+  return (
+    <iframe
+      srcDoc={dashboardHTML}
+      style={{ width: '100vw', height: '100vh', border: 'none' }}
+      title="Admin Dashboard"
+    />
+  );
+}
+
 const dashboardHTML = `<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --gold:#C9A84C;--gold2:#E8C96A;--gold3:#A07830;
