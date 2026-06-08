@@ -1,19 +1,5 @@
 import { useEffect } from 'react';
 
-export default function AdminDashboard() {
-  useEffect(() => {
-    // Prevents the main app styles from interfering
-    document.body.style.margin = '0';
-  }, []);
-
-  return (
-    <iframe
-      srcDoc={dashboardHTML}
-      style={{ width: '100vw', height: '100vh', border: 'none' }}
-      title="Admin Dashboard"
-    />
-  );
-}
 
 const dashboardHTML = `<!DOCTYPE html>
 <html>
@@ -55,8 +41,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .pw-wrap input{padding-right:40px}
 .pw-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text3);cursor:pointer;font-size:16px;padding:0;line-height:1}
 .capslock-warn{font-size:11px;color:var(--amber);margin-top:4px;display:none}
-.pw-strength{display:flex;gap:3px;margin-top:6px;height:3px}
-.pw-strength span{flex:1;border-radius:2px;background:var(--border);transition:background .3s}
+.pw-strength{display:flex;gap:3px;margin-top:8px;height:6px;border-radius:3px}
+.pw-strength span{flex:1;border-radius:3px;background:var(--border2);transition:background .4s;min-width:0}
 .login-attempts{font-size:11px;color:var(--red);text-align:center;margin-bottom:12px;min-height:16px}
 .lockout-timer{font-size:13px;color:var(--amber);text-align:center;margin-bottom:12px}
 .btn-login{width:100%;padding:12px;background:linear-gradient(135deg,var(--gold3),var(--gold),var(--gold2));color:#0A0806;font-family:'DM Sans',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:8px;cursor:pointer;transition:opacity .2s;margin-top:4px}
@@ -491,7 +477,7 @@ function toggleTheme(){
 function togglePw(id,btn){
   var inp=document.getElementById(id);
   inp.type=inp.type==='password'?'text':'password';
-  btn.textContent=inp.type==='password'?'Show':'Hide';
+  btn.innerHTML=inp.type==='password'?'&#128065;':'&#128064;';
 }
 
 function checkCaps(e){
@@ -640,7 +626,7 @@ function renderProducts(){
     grid.appendChild(card);
     if(table){
       var tr=document.createElement('tr');
-      tr.innerHTML='<td><input type="checkbox" '+(sel?'checked':'')+' onchange="toggleSelect('+p.id+',event)" style="cursor:pointer"></td><td><div style="width:40px;height:40px;background:var(--bg4);border-radius:6px;display:flex;align-items:center;justify-content:center">&#128142;</div></td><td style="font-weight:500">'+p.name+'</td><td style="font-family:\'Cormorant Garamond\',serif;font-size:16px;color:var(--gold)">'+p.price+' DH</td><td>'+(p.badge?'<span class="badge '+(p.badge==='Bestseller'?'badge-bestseller':'badge-new')+'">'+p.badge+'</span>':'-')+'</td><td><span style="font-size:11px;padding:2px 8px;border-radius:10px;'+(p.hidden?'background:rgba(201,64,64,.12);color:var(--red)':'background:rgba(64,168,112,.12);color:var(--green)')+'\">'+(p.hidden?'Hidden':'Visible')+'</span></td><td style="display:flex;gap:6px"><button class="btn btn-sm btn-secondary" onclick="openEditProduct('+p.id+')">Edit</button><button class="btn btn-sm btn-secondary" onclick="toggleHide('+p.id+')">'+(p.hidden?'Show':'Hide')+'</button><button class="btn btn-sm btn-danger" onclick="confirmDelete('+p.id+')">Delete</button></td>';
+      tr.innerHTML='<td><input type="checkbox" '+(sel?'checked':'')+' onchange="toggleSelect('+p.id+',event)" style="cursor:pointer"></td><td><div style="width:40px;height:40px;background:var(--bg4);border-radius:6px;display:flex;align-items:center;justify-content:center">&#128142;</div></td><td style="font-weight:500">'+p.name+'</td><td style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold)">'+p.price+' DH</td><td>'+(p.badge?'<span class="badge '+(p.badge==='Bestseller'?'badge-bestseller':'badge-new')+'">'+p.badge+'</span>':'-')+'</td><td><span style="font-size:11px;padding:2px 8px;border-radius:10px;'+(p.hidden?'background:rgba(201,64,64,.12);color:var(--red)':'background:rgba(64,168,112,.12);color:var(--green)')+'">'+(p.hidden?'Hidden':'Visible')+'</span></td><td style="display:flex;gap:6px"><button class="btn btn-sm btn-secondary" onclick="openEditProduct('+p.id+')">Edit</button><button class="btn btn-sm btn-secondary" onclick="toggleHide('+p.id+')">'+(p.hidden?'Show':'Hide')+'</button><button class="btn btn-sm btn-danger" onclick="confirmDelete('+p.id+')">Delete</button></td>';
       table.appendChild(tr);
     }
   });
@@ -902,7 +888,7 @@ function renderOverviewProducts(){
   products.slice(0,4).forEach(function(p){
     var d=document.createElement('div');
     d.style.cssText='background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px;';
-    d.innerHTML='<div style="font-size:28px;margin-bottom:8px">&#128142;</div><div style="font-weight:600;font-size:13px;margin-bottom:4px">'+p.name+'</div><div style="font-family:\'Cormorant Garamond\',serif;font-size:18px;color:var(--gold)">'+p.price+' DH</div>';
+    d.innerHTML='<div style="font-size:28px;margin-bottom:8px">&#128142;</div><div style="font-weight:600;font-size:13px;margin-bottom:4px">'+p.name+'</div><div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold)">'+p.price+' DH</div>';
     c.appendChild(d);
   });
 }
