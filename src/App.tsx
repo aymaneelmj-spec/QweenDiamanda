@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Moon, Sun, ShoppingBag, Check, X, Banknote, Truck, Sparkles } from 'lucide-react';
 import { AppProvider, useAppContext } from './contexts/AppContext';
@@ -6,6 +7,7 @@ import { products, translations } from './data';
 import { DiamondSVG } from './components/DiamondSVG';
 import heroImage from './assets/images/hero_diamond_woman_1780720985552.png';
 import { cn } from './lib/utils';
+import AdminDashboard from './AdminDashboard';
 
 const AppContent = () => {
   const { language, setLanguage, theme, toggleTheme } = useAppContext();
@@ -176,7 +178,7 @@ const AppContent = () => {
             </div>
           </motion.div>
 
-            <motion.div 
+          <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -447,10 +449,33 @@ const AppContent = () => {
   );
 };
 
+// Main storefront page wrapped in AppProvider
+const StoreFront = () => (
+  <AppProvider>
+    <AppContent />
+  </AppProvider>
+);
+
+// 404 fallback page
+const NotFound = () => (
+  <AppProvider>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#0A0A0B', color: '#C9A84C', fontFamily: 'serif', gap: 16 }}>
+      <div style={{ fontSize: 80 }}>💎</div>
+      <h1 style={{ fontSize: 32, letterSpacing: '0.2em', textTransform: 'uppercase' }}>Page introuvable</h1>
+      <a href="/" style={{ color: '#C9A84C', fontSize: 14, letterSpacing: '0.15em', textTransform: 'uppercase', textDecoration: 'none', border: '1px solid #C9A84C', padding: '10px 24px', borderRadius: 6 }}>
+        Retour à l'accueil
+      </a>
+    </div>
+  </AppProvider>
+);
+
 export default function App() {
   return (
-    <AppProvider>
-      <AppContent />
-    </AppProvider>
+    <Routes>
+      <Route path="/" element={<StoreFront />} />
+      <Route path="/admin" element={<AdminDashboard />} />
+      {/* Catch-all: redirect unknown URLs to a 404 instead of blank white page */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
