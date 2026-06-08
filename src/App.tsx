@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { Moon, Sun, ShoppingBag, Check, X, Banknote, Truck, Sparkles } from 'lucide-react';
 import { AppProvider, useAppContext } from './contexts/AppContext';
@@ -450,11 +450,26 @@ const AppContent = () => {
 };
 
 // Main storefront page wrapped in AppProvider
-const StoreFront = () => (
-  <AppProvider>
-    <AppContent />
-  </AppProvider>
-);
+const StoreFront = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key === 'F') {
+        e.preventDefault();
+        navigate('/admin');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [navigate]);
+
+  return (
+    <AppProvider>
+      <AppContent />
+    </AppProvider>
+  );
+};
 
 // 404 fallback page
 const NotFound = () => (
