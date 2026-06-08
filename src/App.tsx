@@ -7,9 +7,6 @@ import { DiamondSVG } from './components/DiamondSVG';
 import heroImage from './assets/images/hero_diamond_woman_1780720985552.png';
 import { cn } from './lib/utils';
 
-import { Routes, Route } from 'react-router-dom';
-import AdminDashboard from './AdminDashboard';
-
 const AppContent = () => {
   const { language, setLanguage, theme, toggleTheme } = useAppContext();
   const t = translations[language];
@@ -27,15 +24,6 @@ const AppContent = () => {
       const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scroll = totalScroll / windowHeight;
       setScrollProgress(scroll);
-const handler = (e: KeyboardEvent) => {
-    if (e.ctrlKey && e.shiftKey && e.key === 'F') {
-      window.location.href = '/qd-admin';
-    }
-  };
-  window.addEventListener('keydown', handler);
-  return () => window.removeEventListener('keydown', handler);
-
-
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -459,14 +447,10 @@ const handler = (e: KeyboardEvent) => {
   );
 };
 
-
 export default function App() {
   return (
     <AppProvider>
-      <Routes>
-        <Route path="/" element={<AppContent />} />
-        <Route path="/qd-admin" element={<AdminDashboard />} />
-      </Routes>
+      <AppContent />
     </AppProvider>
   );
 }

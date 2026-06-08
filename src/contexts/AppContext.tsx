@@ -15,16 +15,6 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>('ar');
   const [theme, setTheme] = useState<Theme>('dark'); // Default deep luxury dark
- 
-  useEffect(() => {
-  const handler = (e: KeyboardEvent) => {
-    if (e.ctrlKey && e.shiftKey && e.key === 'F') {
-      window.location.href = '/qd-admin';
-    }
-  };
-  window.addEventListener('keydown', handler);
-  return () => window.removeEventListener('keydown', handler);
-}, []);
 
   useEffect(() => {
     const root = window.document.documentElement;
