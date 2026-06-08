@@ -280,7 +280,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </div>
 
     <button class="btn-login" id="btn-login" onclick="attemptLogin()">Enter Dashboard</button>
-    <div class="security-note">🔒 Secured · Desktop Only · 30-min Session</div>
+    <div class="security-note">🔒 Secured · Desktop Only · 30-min Session 🔒</div>
   </div>
 </div>
 
@@ -289,7 +289,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   <div style="display:flex;flex-direction:column;width:100%;min-height:600px">
     <!-- TOPBAR -->
     <div class="topbar">
-      <span class="topbar-logo">♦ Queen Diamanda</span>
+      <span class="topbar-logo">♦ Queen Diamanda ♦</span>
       <div class="topbar-nav">
         <button class="nav-btn active" onclick="showTab('overview',this)">Overview</button>
         <button class="nav-btn" onclick="showTab('products',this)">Products</button>
@@ -312,7 +312,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <div class="tab active" id="tab-overview">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
           <div>
-            <h2 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600">Good morning, Admin 👑</h2>
+            <h2 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600">Good morning, Fadwa 👑</h2>
             <p style="font-size:12px;color:var(--text3);margin-top:2px" id="current-date"></p>
           </div>
           <button class="btn btn-primary" onclick="showTab('products',document.querySelectorAll('.nav-btn')[1])">+ Add Product</button>
